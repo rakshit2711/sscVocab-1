@@ -6,6 +6,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -22,12 +24,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import com.sscvocab.SscVocab1Application;
 import com.sscvocab.model.Vocab;
 import com.sscvocab.services.VocabService;
 
 @RestController
 public class VocabQuestionController {
 
+	private static final Logger logger = LoggerFactory.getLogger(VocabQuestionController.class);
+	
 	@Autowired
 	VocabService vocabService;
 	@RequestMapping(value = "/vocab/question",method = RequestMethod.GET)
@@ -50,14 +55,21 @@ public class VocabQuestionController {
 			  consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
 	public ModelAndView addVocab(@RequestParam LinkedHashMap<String, String> model){
 		Vocab vocab=new Vocab();
-		vocab.setWord(model.get("word"));
-		vocab.setMeaning(model.get("meaning"));
+		vocab.setWord(toUpperFirstChar(model.get("word")));
+		vocab.setMeaning(toUpperFirstChar(model.get("meaning")));
 		Vocab copy=vocabService.findByWord(vocab.getWord());
-		if(copy!=null && !copy.getMeaning().equalsIgnoreCase(vocab.getMeaning())) {
-			vocab.setMeaning(copy.getMeaning()+" / "+vocab.getMeaning());
+		if(copy==null ) {
+			vocabService.saveVocab(vocab);
+			logger.info(vocab.getWord()+" will be added");
 		}
-		if(vocab.getMeaning()==null || vocab.getWord()==null ||vocab.getMeaning().equals("")||vocab.getWord().contentEquals("")) {}
-		else vocabService.saveVocab(vocab);
+		else {
+			logger.info(vocab.getWord()+" will not be added");
+		}
+		
 		return new ModelAndView("redirect:/vocab/addword");
+	}
+	
+	private String toUpperFirstChar(String str) {
+		return str.substring(0, 1).toUpperCase() + str.substring(1);
 	}
 }
