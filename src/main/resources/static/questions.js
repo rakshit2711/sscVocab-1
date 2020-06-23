@@ -35,7 +35,7 @@ function uidisplay(data){
         <label for="${data.options[i]}" id="optionLabel${i}">${data.options[i]}</label><br>`;
         document.querySelector('#form').insertAdjacentHTML('beforeend',markup);
     }
-};
+}
 function setquestiondetail(data){
     const setQues={};
     let randques;
@@ -51,14 +51,14 @@ function setquestiondetail(data){
          if(rop===option[0]){
             console.log("Same optoina as correct answer found while finding options");
             continue;
-        };
+        }
         option.push(rop);
         i++;
     }
     setQues.options=randomizeOption(option);
     state.res.splice(randques,1);
     return setQues;
-};
+}
 function randomNum(data) {
     return Math.floor(Math.random() * data.length);
 }
@@ -73,7 +73,7 @@ const clearResults=()=> {
     element.parentNode.removeChild(element);
      for (let i = 0; i < 4; i++) {
         let eleId=`option${i}`;
-        let element = document.getElementById(eleId);
+        element = document.getElementById(eleId);
         element.parentNode.removeChild(element);
         eleId=`optionLabel${i}`;
         element = document.getElementById(eleId);
@@ -89,11 +89,11 @@ function checkAns(){
         if(x){
             const option=x.value;
             if(option===curques.correct){
-                setscore(true,2);
+                setscore(2);
                 // alert("Answer is correct Your current score is "+state.score);
             }
             else{
-                setscore(false,-0.5);
+                setscore(-0.5);
                 state.curques.chosOption=option;
                 state.wrong.push(state.curques);
             }
@@ -113,7 +113,7 @@ function checkAns(){
         result.totalscore=state.totalscore;
         result.page="questionvocab;"
         window.sessionStorage.setItem('state',JSON.stringify(result));
-        url=getURL()+"/result";
+        let url=getURL()+"/result";
         window.location=url;
     }
     else{
@@ -127,22 +127,17 @@ function nextQues(){
     }
 }
 
-function setscore(incre,value){
+function setscore(value){
     let score=state.score;
-    if(incre===true){
         score=score+value;
-    }
-    else{
-        score=score+value;
-    }
     state.score=score;
     $(document).ready(function (params) {
         $("#curscore").text(score);
     } );
 }
 function getURL(){
-	url=window.location.href;
-	urlArr=url.split('/');
+	let url=window.location.href;
+	let urlArr=url.split('/');
 	urlArr.pop();
 	url=urlArr.join("/");
 	return url+"/vocab";

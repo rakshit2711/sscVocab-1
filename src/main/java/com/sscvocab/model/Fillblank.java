@@ -22,8 +22,6 @@ public class Fillblank implements Serializable {
 
 	private String question;
 
-	public Fillblank() {
-	}
 
 	public int getId() {
 		return this.id;

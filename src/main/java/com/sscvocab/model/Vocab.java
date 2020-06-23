@@ -21,8 +21,6 @@ public class Vocab implements Serializable {
 
 	private String word;
 
-	public Vocab() {
-	}
 
 	public int getId() {
 		return this.id;
