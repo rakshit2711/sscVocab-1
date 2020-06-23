@@ -21,8 +21,6 @@ public class Collectnoun implements Serializable {
 
 	private String noun;
 
-	public Collectnoun() {
-	}
 
 	public int getId() {
 		return this.id;

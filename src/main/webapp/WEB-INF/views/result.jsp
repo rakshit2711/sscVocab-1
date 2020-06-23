@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>VocabQuestion</title>
@@ -10,13 +10,13 @@
 <script src="${pageContext.request.contextPath}/result.js"></script>
 </head>
 <body>
-<h1>Result</h1>
 <table id="resultPage">
+	<caption>Result</caption>
     <tr>
-      <th>S.No</th>  
-      <th>Question</th>
-      <th>Correct Option</th>
-      <th>Your Option</th>
+      <th id="sno">S.No</th>  
+      <th id="questionHead">Question</th>
+      <th id="correctOption">Correct Option</th>
+      <th id="yourOption">Your Option</th>
     </tr>
   </table>
 <form method="get" action="/vocab/addword">

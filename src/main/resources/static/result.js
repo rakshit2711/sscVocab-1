@@ -1,12 +1,12 @@
-function uidisplay(result) {
+function uidisplay(resultdisplay) {
     $(document).ready(function (params) {
-        let markup=`<h1>Your score was ${result.score} out of ${result.totalscore}`
+        let markup=`<h1>Your score was ${resultdisplay.score} out of ${resultdisplay.totalscore}`
         document.querySelector('#resultPage').insertAdjacentHTML('beforebegin',markup);
         for (let i = 0; i < result.wrong.length; i++) {
-        	 markup=`<tr><td>${i+1}</td><td>${result.wrong[i].question}</td><td>${result.wrong[i].correct}s</td><td>${result.wrong[i].chosOption}</td></tr>`;
+        	 markup=`<tr><td>${i+1}</td><td>${resultdisplay.wrong[i].question}</td><td>${resultdisplay.wrong[i].correct}s</td><td>${resultdisplay.wrong[i].chosOption}</td></tr>`;
             document.querySelector('#resultPage').insertAdjacentHTML('beforeend',markup);
         }
-        markup=`<h3>Total questions Were: ${result.totalscore/2}<h3>`
+        markup=`<h3>Total questions Were: ${resultdisplay.totalscore/2}<h3>`
             document.querySelector('#resultPage').insertAdjacentHTML('afterend',markup);
     });
 }
@@ -19,7 +19,7 @@ function goVocab(){
 }
 function getURL(){
 	let url=window.location.href;
-	urlArr=url.split('/');
+	let urlArr=url.split('/');
 	urlArr.pop();
 	urlArr.pop();
 	url=urlArr.join("/");

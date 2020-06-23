@@ -6,7 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-import com.sscvocab.controller.VocabQuestionController;
 
 @SpringBootApplication
 @ComponentScan(basePackageClasses=SscVocab1Application.class)
