@@ -79,7 +79,7 @@ const clearResults=()=> {
         element = document.getElementById(eleId);
         element.parentNode.removeChild(element);
      }
-     $("br").remove();
+     $('#form br').remove();
     
 };
 function checkAns(){
