@@ -38,7 +38,7 @@ class HomeControllerTest {
 
 	@Test
 	void testQuestionVocab() {
-		assertEquals("questions", new HomeController().questionVocab().getViewName());
+		assertEquals("vocabMeaning", new HomeController().questionVocab().getViewName());
 	}
 
 }
