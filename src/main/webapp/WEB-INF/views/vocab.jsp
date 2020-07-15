@@ -11,8 +11,6 @@
 </head>
 <body>
 
-<h3>Vocab Quiz</h3>
-
 <div>
   <form  id="form">
   
