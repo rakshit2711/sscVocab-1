@@ -32,7 +32,8 @@ function uidisplay(data){
    
     for (let i = 0; i < data.options.length; i++) {
         markup=`<input type="radio" id="option${i}" class="option" name="selectedoption" value="${data.options[i]}">
-        <label for="${data.options[i]}" id="optionLabel${i}">${data.options[i]}</label><br>`;
+        <label for="${data.options[i]}" id="optionLabel${i}" style="font-size:40px">${data.options[i]}</label><br>`;
+
         document.querySelector('#form').insertAdjacentHTML('beforeend',markup);
     }
 }
